@@ -1,0 +1,16 @@
+This program was an excersize to practice the application of timers and ioctl
+calls. The driver makes a led blink SOS in morse code. The final output is
+captured in a pdf, ledLogicAnalyzeOutput.pdf. The pdf printout is from using
+the intronix logic analyzer. the first edge of the sos signal is cut off 
+slightly because the captured output was pattern triggered instead of edge
+ triggered. 
+
+This code is mostly the combination of the led driver found from sysprogs.com
+and a driver from 'writing linux device drivers: a guide with excercises,' by
+Jerry Cooperstein. 
+
+after loading the device via insmod, the device automatically registers. 
+however, the permissions of the device are crw------ and so ioctl calls 
+won't work. It's necessary to change the permissions of the registered devnode
+via sudo chmod 666 /dev/mycdrv before running the test usermode application
+to send the ioctl.
